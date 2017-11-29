@@ -92,15 +92,20 @@ function showRatings(obj) {
     var liStudentsCumple = document.createElement('li');    
     ulStudentsPoints.textContent = 'SPRINT ' + (j + 1) + ':';
     liStudentsSup.textContent = 'Estudiantes con expectativas superior de la experiencia de Laboratoria : ' + obj['ratings'][j]['student']['supera'] + '%';
-    liStudentsCumple.textContent = 'Estudiantes con expectativa cumplida de la experiencia de Laboratoria: ' + obj['ratings'][j]
-    ['student']['cumple'] + '%';
+    liStudentsCumple.textContent = 'Estudiantes con expectativa cumplida de la experiencia de Laboratoria: ' + obj['ratings'][j]['student']['cumple'] + '%';
     ulStudentsPoints.appendChild(liStudentsSup);
     divRatings.appendChild(ulStudentsPoints);
     ulStudentsPoints.appendChild(liStudentsCumple);
     
+  // Creamos un li para almacenar el promedio de la puntuacion de los profesores
+   var liTeacherPoints = document.createElement('li');
+   liTeacherPoints.textContent = 'Puntuación promedio de l@s profesores : ' + obj['ratings'][j]['teacher'] + '%';
+   ulStudentsPoints.appendChild(liTeacherPoints);
     /* acumulStudentsSupera = acumulStudentsSupera + obj['ratings'][j]['student']['supera'];
     pStudentsSupera.textContent = 'ALUMNAS QUE SUPERAN LA META: ' + acumulStudentsSupera;
     divRatings.appendChild(pStudentsSupera); */
-  
+   var liJediPoints= document.createElement('li');
+   liJediPoints.textContent = 'Puntuación promedio de l@s jedis : ' + obj['ratings'][j]['jedi'] + '%';
+   ulStudentsPoints.appendChild(liJediPoints); 
   };
 };
