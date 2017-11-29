@@ -91,8 +91,8 @@ function showRatings(obj) {
     var liStudentsSup = document.createElement('li');
     var liStudentsCumple = document.createElement('li');    
     ulStudentsPoints.textContent = 'SPRINT ' + (j + 1) + ':';
-    liStudentsSup.textContent = 'Estudiantes superan la expectativa: ' + obj['ratings'][j]['student']['supera'] + '%';
-    liStudentsCumple.textContent = 'Estudiantes cumplen la expectativa: ' + obj['ratings'][j]
+    liStudentsSup.textContent = 'Estudiantes con expectativas superior de la experiencia de Laboratoria : ' + obj['ratings'][j]['student']['supera'] + '%';
+    liStudentsCumple.textContent = 'Estudiantes con expectativa cumplida de la experiencia de Laboratoria: ' + obj['ratings'][j]
     ['student']['cumple'] + '%';
     ulStudentsPoints.appendChild(liStudentsSup);
     divRatings.appendChild(ulStudentsPoints);
