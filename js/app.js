@@ -46,6 +46,7 @@ window.addEventListener('load', function() {
       var generation2016II = data[sede[chooseSede]]['2016-2']; // esta seleccionando el objeto que esta dentro de 2016II el cual incluye students y ratings como keys
       showGeneration(generation2016II);
       showRatings(generation2016II);
+      showGeneral(generation2016II)
       break;
     case event.target.value === '2017-1':
       var generation2017I = data[sede[chooseSede]]['2017-1'];
@@ -88,13 +89,21 @@ function showRatings(obj) {
   for (var j = 0; j < obj['ratings'].length; j++) { // recorre el array ratings
     console.log(obj['ratings'][j]['student']); // me da un objeto que contiene los keys de cumple o no
     var ulStudentsPoints = document.createElement('ul');
-    var liStudentsCumple = document.createElement('li');
+    var liStudentsSup = document.createElement('li');
     ulStudentsPoints.textContent = 'SPRINT ' + (j + 1) + ':';
-    liStudentsCumple.textContent = 'Estudiantes que superan la meta: ' + obj['ratings'][j]['student']['supera'] + '%';
-    ulStudentsPoints.appendChild(liStudentsCumple);
+    liStudentsSup.textContent = 'Estudiantes superan la expectativa: ' + obj['ratings'][j]['student']['supera'] + '%';
+    ulStudentsPoints.appendChild(liStudentsSup);
     divRatings.appendChild(ulStudentsPoints);
     /* acumulStudentsSupera = acumulStudentsSupera + obj['ratings'][j]['student']['supera'];
     pStudentsSupera.textContent = 'ALUMNAS QUE SUPERAN LA META: ' + acumulStudentsSupera;
     divRatings.appendChild(pStudentsSupera); */
+  } 
+    for (var j = 0; j < obj['ratings'].length; j++) {
+      console.log(obj['ratings'][j]['student']);
+      // var ulStudentsPoints = document.createElement('ul');
+      var liStudentsCumple = document.createElement('li');
+      liStudentsCumple.textContent = 'Estudiantes cumplen la expectativa: ' + obj['ratings'][j]
+      ['student']['cumple'] + '%';
+      divRatings.appendChild(liStudentsCumple);
   };
 };
