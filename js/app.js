@@ -44,16 +44,21 @@ window.addEventListener('load', function() {
     switch (true) {
     case event.target.value === '2016-2':
       var generation2016II = data[sede[chooseSede]]['2016-2']; // esta seleccionando el objeto que esta dentro de 2016II el cual incluye students y ratings como keys
+      container.textContent = '';
       showGeneration(generation2016II);
-      showRatings(generation2016II);
+      showMetas(generation2016II);
       break;
     case event.target.value === '2017-1':
       var generation2017I = data[sede[chooseSede]]['2017-1'];
+      container.textContent = '';
       showGeneration(generation2017I);
+      showMetas(generation2017I);
       break;
     case event.target.value === '2017-2':
       var generation2017II = data[sede[chooseSede]]['2017-2'];
+      container.textContent = '';
       showGeneration(generation2017II);
+      showMetas(generation2017II);
       break;
     }
   });
@@ -80,11 +85,97 @@ function showGeneration(obj) { // nos va a mostrar la cantidad de estudiantes ac
   divStudents.appendChild(pStudentsDeserter);
 }
 
+function showMetas(obj) {
+  var tech = (1800 * 70) / 100;// calcula el 70% (1800) 1260
+  var hse = (1200 * 70) / 100;// clacula el 70% (1200) 840
+  var divMetas = document.createElement('div');
+  container.appendChild(divMetas);
+  var acumSprint1Tech = 0;
+  var acumSprint1Hse = 0;
+  var acumSprint2Tech = 0;
+  var acumSprint2Hse = 0;
+  var acumSprint3Tech = 0;
+  var acumSprint3Hse = 0;
+  var acumSprint4Tech = 0;
+  var acumSprint4Hse = 0;
+  for (var j = 0; j < obj['students'].length; j++) {// recorre el array con las estudiantes
+    var sprintByStudents = obj['students'][j]['sprints']; // contiene un array con los sprint de cada estidiante
+    for (var k = 0; k < sprintByStudents.length; k++) {// recorre el array con los sprint
+      // console.log(obj['students'][j]['sprints'][k]);
+      var scoreStudents = obj['students'][j]['sprints'][k]['score'];
+      switch (true) {
+      case k === 0:
+        if (scoreStudents['tech'] > tech) {
+          acumSprint1Tech = acumSprint1Tech + 1;
+        };
+        if (scoreStudents['hse'] > hse) {
+          acumSprint1Hse = acumSprint1Hse + 1;
+        };
+        break;
+      case k === 1:
+        if (scoreStudents['tech'] > tech) {
+          acumSprint2Tech = acumSprint2Tech + 1;
+        };
+        if (scoreStudents['hse'] > hse) {
+          acumSprint2Hse = acumSprint2Hse + 1;
+        };
+        break;
+      case k === 2:
+        if (scoreStudents['tech'] > tech) {
+          acumSprint3Tech = acumSprint3Tech + 1;
+        };
+        if (scoreStudents['hse'] > hse) {
+          acumSprint3Hse = acumSprint3Hse + 1;
+        };
+        break;
+      case k === 3:
+        if (scoreStudents['tech'] > tech) {
+          acumSprint4Tech = acumSprint4Tech + 1;
+        };
+        if (scoreStudents['hse'] > hse) {
+          acumSprint4Hse = acumSprint4Hse + 1;
+        };
+        break;
+      }
+    };
+  };
+  if (acumSprint1Tech !== 0 && acumSprint1Hse !== 0) {
+    var pTech1 = document.createElement('p');
+    var pHse1 = document.createElement('p');
+    pTech1.textContent = 'SPRINT 1 - SUPERAN EL 70% EN TECNICO: ' + acumSprint1Tech;
+    pHse1.textContent = 'SPRINT 1 - SUPERAN EL 70% EN HSE: ' + acumSprint1Hse;
+    divMetas.appendChild(pTech1);
+    divMetas.appendChild(pHse1);
+  };
+  if (acumSprint2Tech !== 0 && acumSprint2Hse !== 0) {
+    var pTech2 = document.createElement('p');
+    var pHse2 = document.createElement('p');
+    pTech2.textContent = 'SPRINT 2 - SUPERAN EL 70% EN TECNICO: ' + acumSprint2Tech;
+    pHse2.textContent = 'SPRINT 2 - SUPERAN EL 70% EN HSE: ' + acumSprint2Hse;
+    divMetas.appendChild(pTech2);
+    divMetas.appendChild(pHse2);
+  };
+  if (acumSprint3Tech !== 0 && acumSprint3Hse !== 0) {
+    var pTech3 = document.createElement('p');
+    var pHse3 = document.createElement('p');
+    pTech3.textContent = 'SPRINT 3 - SUPERAN EL 70% EN TECNICO: ' + acumSprint3Tech;
+    pHse3.textContent = 'SPRINT 3 - SUPERAN EL 70% EN HSE: ' + acumSprint3Hse;
+    divMetas.appendChild(pTech3);
+    divMetas.appendChild(pHse3);
+  };
+  if (acumSprint4Tech !== 0 && acumSprint4Hse !== 0) {
+    var pTech4 = document.createElement('p');
+    var pHse4 = document.createElement('p');
+    pTech4.textContent = 'SPRINT 4 - SUPERAN EL 70% EN TECNICO: ' + acumSprint4Tech;
+    pHse4.textContent = 'SPRINT 4 - SUPERAN EL 70% EN HSE: ' + acumSprint4Hse;
+    divMetas.appendChild(pTech4);
+    divMetas.appendChild(pHse4);
+  };
+};
+
 function showRatings(obj) {
-  var divRatings = document.createElement('div');
+  var divRatings = document.createElement('div'); // creamos un div que contenga kos datos
   container.appendChild(divRatings);
-  // var pStudentsSupera = document.createElement('p');
-  // var acumulStudentsSupera = 0;
   for (var j = 0; j < obj['ratings'].length; j++) { // recorre el array ratings
     console.log(obj['ratings'][j]['student']); // me da un objeto que contiene los keys de cumple o no
     var ulStudentsPoints = document.createElement('ul');
@@ -101,9 +192,6 @@ function showRatings(obj) {
    var liTeacherPoints = document.createElement('li');
    liTeacherPoints.textContent = 'Puntuación promedio de l@s profesores : ' + obj['ratings'][j]['teacher'] + '%';
    ulStudentsPoints.appendChild(liTeacherPoints);
-    /* acumulStudentsSupera = acumulStudentsSupera + obj['ratings'][j]['student']['supera'];
-    pStudentsSupera.textContent = 'ALUMNAS QUE SUPERAN LA META: ' + acumulStudentsSupera;
-    divRatings.appendChild(pStudentsSupera); */
    var liJediPoints= document.createElement('li');
    liJediPoints.textContent = 'Puntuación promedio de l@s jedis : ' + obj['ratings'][j]['jedi'] + '%';
    ulStudentsPoints.appendChild(liJediPoints); 

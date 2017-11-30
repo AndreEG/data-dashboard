@@ -61,3 +61,29 @@ nav select{
     font-size: 25px;
     margin: 10px;
 }
+body{
+    background-color: #F7F7F7;
+    
+}
+.studentBox {
+    width: 800px;
+    height: 204px;
+}
+.hidden{
+    display: none;
+}
+.specialization{
+    font-family: 'Montserrat', sans-serif;
+    width: 380px;
+    height: 175 px;
+    background-color: #fff;
+    margin-left: 97px;
+    margin-top: 42px;
+}
+.specialization p {
+    font-weight: 800;
+}
+.search{
+    width: 750px;
+    height: 45px;
+}
