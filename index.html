@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Data Dashboard</title>
     <link rel="stylesheet" href="css/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700" rel="stylesheet">    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
@@ -29,10 +29,13 @@
         </select>
       </div>
       <ul class="see-info">
-        <li>DASHBOARD</li>
-        <li>ALUMNAS</li>
+        <li id="dashboard"><a href="">DASHBOARD</a></li>
+        <li id="students"><a href="">ALUMNAS</a> </li>
       </ul>
     </nav>
+    <!--<div class="fondo" id="fondo">
+      <img src="assets/images/laboratoria.jpg" alt="fondo">
+    </div>-->
     <section class="dashboard" id="dashboard">
       <div id="container"></div>
       <div id="charts-pie"></div>
@@ -41,6 +44,22 @@
       <div id="container3"></div>
       <div id="charts-column"></div>
     </section>
+    <section class="Screenstudents" id="screenStudents" >
+        <div class="specialization">
+          <P>SPECIALIZATION</P>
+          <label><INPUT TYPE="checkbox" NAME="js" VALUE="javascript">Javascript<BR></label>
+          <label><INPUT TYPE="checkbox" NAME="ux" VALUE="javascript">UX Design<BR></label>
+          <label><INPUT TYPE="checkbox" NAME="q5" VALUE="javascript">Front end Designer<BR></label>
+        </div>
+        <span>
+        <input class="search" placeholder="" type="text">   
+        </span>
+        <div id="showStudents">
+          
+         </div>
+    <section>
+
+    
 		<!-- Base de datos -->
 		<script src="./js/data.js"></script>
 		<!-- Aquí va tus archivos JS -->

@@ -1,55 +1,88 @@
 // guarda en un array las sedes
 var sede = Object.keys(data); // ["AQP", "CDMX", "LIM", "SCL"]
-console.log(sede);
+// console.log(sede);
 // guarda en un array los objetos de cada sede es decir las generaciones
 var generation = Object.values(data); // [{…}, {…}, {…}, {…}] tiene el valor de AQP, CDMX, LIM, SCL
-console.log(generation);
+// console.log(generation);
 // guarda las generaciones en un array
 var generationAarequipa = Object.keys(generation[0]); // ["2016-2", "2017-1"]
-console.log(generationAarequipa);
+// console.log(generationAarequipa);
 // guarda en un array los objetos de las generaciones que guardan students y ratings
 var genArequipaObject = Object.values(generation[0]); // [{…}, {…}] tiene el valor 2016-2, 2017-1
-console.log(genArequipaObject);
+// console.log(genArequipaObject);
 
 
 var container = document.getElementById('container');
 var container2 = document.getElementById('container2');
+var container3 = document.getElementById('container3');
+var chartsPie = document.getElementById('charts-pie');
+var chartsBar = document.getElementById('charts-bar');
+var chartsColumn = document.getElementById('charts-column');
 
 window.addEventListener('load', function() {
+  document.getElementById('screenStudents').classList.add('hidden');
+  
   var selectSede = document.getElementById('sede');
   var selectGeneration = document.getElementById('generation');
   var chooseSede = ''; // va a indicar cual es la sede para tomarlas en cuenta con el siguiente filtro
-
+  var studentInfo = document.getElementById('students')
   selectSede.addEventListener('change', function() {
     switch (true) {
     case event.target.value === 'lima':
       container.textContent = '';
+      container2.textContent = '';
+      container3.textContent = '';
+      chartsPie.textContent = '';
+      chartsBar.textContent = '';
+      chartsColumn.textContent = '';
       console.log(data[sede[2]]);
       chooseSede = 2; // chooseSede cambia a 2 porque es la posicion en el array sede que tiene lima
       break;
     case event.target.value === 'arequipa':
       container.textContent = '';
+      container2.textContent = '';
+      container3.textContent = '';
+      chartsPie.textContent = '';
+      chartsBar.textContent = '';
+      chartsColumn.textContent = '';
       console.log(data[sede[0]]); 
       chooseSede = 0; // choose cambia a 0 por su posicion en el array sede
       break;
     case event.target.value === 'chile':
       container.textContent = '';
+      container2.textContent = '';
+      container3.textContent = '';
+      chartsPie.textContent = '';
+      chartsBar.textContent = '';
+      chartsColumn.textContent = '';
       console.log(data[sede[3]]);
       chooseSede = 3; // choose cambia a 3 por su posicion en el array sede
       break;
     case event.target.value === 'mexico':
       container.textContent = '';
+      container2.textContent = '';
+      container3.textContent = '';
+      chartsPie.textContent = '';
+      chartsBar.textContent = '';
+      chartsColumn.textContent = '';
       console.log(data[sede[1]]); // choose cambia a 1 por su posicion en el array sede
       chooseSede = 1;
-      break;
-    };
+      break;  
+    };    
+    document.getElementsByTagName('body').classList.remove('fondo');        
+
   });
 
-  selectGeneration.addEventListener('change', function() {
+  selectGeneration.addEventListener('change', function() {            
     switch (true) {
     case event.target.value === '2016-2':
       var generation2016II = data[sede[chooseSede]]['2016-2']; // esta seleccionando el objeto que esta dentro de 2016II el cual incluye students y ratings como keys
-      container.textContent = ''; // limpia 
+      container.textContent = '';
+      container2.textContent = '';
+      container3.textContent = '';
+      chartsPie.textContent = '';
+      chartsBar.textContent = '';
+      chartsColumn.textContent = ''; // limpia 
       showGeneration(generation2016II);
       showMetas(generation2016II);
       showRatings(generation2016II);
@@ -57,6 +90,11 @@ window.addEventListener('load', function() {
     case event.target.value === '2017-1':
       var generation2017I = data[sede[chooseSede]]['2017-1'];
       container.textContent = '';
+      container2.textContent = '';
+      container3.textContent = '';
+      chartsPie.textContent = '';
+      chartsBar.textContent = '';
+      chartsColumn.textContent = '';
       showGeneration(generation2017I);
       showMetas(generation2017I);
       showRatings(generation2017I);
@@ -64,12 +102,20 @@ window.addEventListener('load', function() {
     case event.target.value === '2017-2':
       var generation2017II = data[sede[chooseSede]]['2017-2'];
       container.textContent = '';
+      container2.textContent = '';
+      container3.textContent = '';
+      chartsPie.textContent = '';
+      chartsBar.textContent = '';
+      chartsColumn.textContent = '';
       showGeneration(generation2017II);
       showMetas(generation2017II);
       showRatings(generation2017II);
       break;
+      document.getElementsById('dashboard').classList.add('color');  
     }
-  });
+
+  });      
+  
 });
 
 function showGeneration(obj) { // nos va a mostrar la cantidad de estudiantes activas
@@ -87,7 +133,7 @@ function showGeneration(obj) { // nos va a mostrar la cantidad de estudiantes ac
   var pStudentsAactive = document.createElement('p');
   pStudentsAactive.textContent = 'ESTUDIANTES ACTIVAS:' + acumulStudentsActive + ' activas'; // contenido del p que muestra las estudiantes activas
   divStudents.appendChild(pStudentsAactive); // agrega el p al div
-  console.log(acumulStudentsActive);
+  // console.log(acumulStudentsActive);
   var pStudentsDeserter = document.createElement('p');
   pStudentsDeserter.textContent = 'ESTUDIANTES DESERTORAS:' + (obj['students'].length - acumulStudentsActive) + ' desertoras'; // mueustra las desertoras
   divStudents.appendChild(pStudentsDeserter);
