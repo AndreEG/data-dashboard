@@ -65,8 +65,7 @@ window.addEventListener('load', function() {
       showGeneration(generation2017II);
       showMetas(generation2017II);
       break;
-      document.getElementsByTagName('body').classList.remove('fondo');
-      document.getElementsByTagName('body').classList.remove('color');  
+      document.getElementsById('dashboard').classList.add('color');  
     }
 
   });      
