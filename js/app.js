@@ -1,24 +1,27 @@
 // guarda en un array las sedes
 var sede = Object.keys(data); // ["AQP", "CDMX", "LIM", "SCL"]
-console.log(sede);
+// console.log(sede);
 // guarda en un array los objetos de cada sede es decir las generaciones
 var generation = Object.values(data); // [{…}, {…}, {…}, {…}] tiene el valor de AQP, CDMX, LIM, SCL
-console.log(generation);
+// console.log(generation);
 // guarda las generaciones en un array
 var generationAarequipa = Object.keys(generation[0]); // ["2016-2", "2017-1"]
-console.log(generationAarequipa);
+// console.log(generationAarequipa);
 // guarda en un array los objetos de las generaciones que guardan students y ratings
 var genArequipaObject = Object.values(generation[0]); // [{…}, {…}] tiene el valor 2016-2, 2017-1
-console.log(genArequipaObject);
+// console.log(genArequipaObject);
 
 
 var container = document.getElementById('container');
+var showStudents = document.getElementById('showStudents')
 
 window.addEventListener('load', function() {
+  document.getElementById('screenStudents').classList.add('hidden');
+  
   var selectSede = document.getElementById('sede');
   var selectGeneration = document.getElementById('generation');
   var chooseSede = ''; // va a indicar cual es la sede para tomarlas en cuenta con el siguiente filtro
-
+  var studentInfo = document.getElementById('students')
   selectSede.addEventListener('change', function() {
     switch (true) {
     case event.target.value === 'lima':
@@ -36,11 +39,13 @@ window.addEventListener('load', function() {
     case event.target.value === 'mexico':
       console.log(data[sede[1]]); // choose cambia a 1 por su posicion en el array sede
       chooseSede = 1;
-      break;
-    };
+      break;  
+    };    
+    document.getElementsByTagName('body').classList.remove('fondo');        
+
   });
 
-  selectGeneration.addEventListener('change', function() {
+  selectGeneration.addEventListener('change', function() {            
     switch (true) {
     case event.target.value === '2016-2':
       var generation2016II = data[sede[chooseSede]]['2016-2']; // esta seleccionando el objeto que esta dentro de 2016II el cual incluye students y ratings como keys
@@ -52,7 +57,7 @@ window.addEventListener('load', function() {
       var generation2017I = data[sede[chooseSede]]['2017-1'];
       container.textContent = '';
       showGeneration(generation2017I);
-      showMetas(generation2017I);
+      showMetas(generation2017I);   
       break;
     case event.target.value === '2017-2':
       var generation2017II = data[sede[chooseSede]]['2017-2'];
@@ -60,8 +65,12 @@ window.addEventListener('load', function() {
       showGeneration(generation2017II);
       showMetas(generation2017II);
       break;
+      document.getElementsByTagName('body').classList.remove('fondo');
+      document.getElementsByTagName('body').classList.remove('color');  
     }
-  });
+
+  });      
+  
 });
 
 function showGeneration(obj) { // nos va a mostrar la cantidad de estudiantes activas
@@ -79,7 +88,7 @@ function showGeneration(obj) { // nos va a mostrar la cantidad de estudiantes ac
   var pStudentsAactive = document.createElement('p');
   pStudentsAactive.textContent = 'ESTUDIANTES ACTIVAS:' + acumulStudentsActive + ' activas'; // contenido del p que muestra las estudiantes activas
   divStudents.appendChild(pStudentsAactive); // agrega el p al div
-  console.log(acumulStudentsActive);
+  // console.log(acumulStudentsActive);
   var pStudentsDeserter = document.createElement('p');
   pStudentsDeserter.textContent = 'ESTUDIANTES DESERTORAS:' + (obj['students'].length - acumulStudentsActive) + ' desertoras'; // mueustra las desertoras
   divStudents.appendChild(pStudentsDeserter);
@@ -177,7 +186,7 @@ function showRatings(obj) {
   var divRatings = document.createElement('div'); // creamos un div que contenga kos datos
   container.appendChild(divRatings);
   for (var j = 0; j < obj['ratings'].length; j++) { // recorre el array ratings
-    console.log(obj['ratings'][j]['student']); // me da un objeto que contiene los keys de cumple o no
+    // console.log(obj['ratings'][j]['student']); // me da un objeto que contiene los keys de cumple o no
     var ulStudentsPoints = document.createElement('ul');
     var liStudentsSup = document.createElement('li');
     var liStudentsCumple = document.createElement('li');    
@@ -188,12 +197,13 @@ function showRatings(obj) {
     divRatings.appendChild(ulStudentsPoints);
     ulStudentsPoints.appendChild(liStudentsCumple);
     
-  // Creamos un li para almacenar el promedio de la puntuacion de los profesores
-   var liTeacherPoints = document.createElement('li');
-   liTeacherPoints.textContent = 'Puntuación promedio de l@s profesores : ' + obj['ratings'][j]['teacher'] + '%';
-   ulStudentsPoints.appendChild(liTeacherPoints);
-   var liJediPoints= document.createElement('li');
-   liJediPoints.textContent = 'Puntuación promedio de l@s jedis : ' + obj['ratings'][j]['jedi'] + '%';
-   ulStudentsPoints.appendChild(liJediPoints); 
+   // Creamos un li para almacenar el promedio de la puntuacion de los profesores
+    var liTeacherPoints = document.createElement('li');
+    liTeacherPoints.textContent = 'Puntuación promedio de l@s profesores : ' + obj['ratings'][j]['teacher'] + '%';
+    ulStudentsPoints.appendChild(liTeacherPoints);
+    var liJediPoints= document.createElement('li');
+    liJediPoints.textContent = 'Puntuación promedio de l@s jedis : ' + obj['ratings'][j]['jedi'] + '%';
+    ulStudentsPoints.appendChild(liJediPoints); 
   };
 };
+

@@ -4,7 +4,10 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+.color{
+    background-color: #F7F7F7;
+    width: 100%
+}
 /*agregando estilos a header*/
 header{
     width: 100%;
@@ -45,12 +48,13 @@ nav select{
     background: transparent;
     border: none;
     font-family: 'Montserrat', sans-serif;
-    font-size: 30px;
+    font-size: 26px;
     font-weight: 600;
     height: 45px;
     margin: 10px;
     padding: 5px;
     width: 260px;
+    margin-left:55px;
 }
 .see-info{
     background: #d8d6d3;
@@ -58,13 +62,16 @@ nav select{
 
 .see-info li{
     display: inline-block;
-    font-size: 25px;
+    font-size: 21px;
     margin: 10px;
+    margin-left: 55px;
 }
-body{
-    background-color: #F7F7F7;
-    
+.see-info a{
+    text-decoration: none;
+    color: black;
 }
+/*agregando estilos a nav*/
+
 .studentBox {
     width: 800px;
     height: 204px;
@@ -72,6 +79,12 @@ body{
 .hidden{
     display: none;
 }
+.fondo{
+    background: url(../assets/images/laboratoria.jpg);
+    background-size: cover;
+}
+/*agregando estilos al filtrado de opciones*/
+
 .specialization{
     font-family: 'Montserrat', sans-serif;
     width: 380px;
@@ -79,11 +92,21 @@ body{
     background-color: #fff;
     margin-left: 97px;
     margin-top: 42px;
+    display: inline-block;
 }
 .specialization p {
-    font-weight: 800;
+    font-weight: 900;
+
+}
+.specialization input{
+    margin-top:10px;
 }
 .search{
     width: 750px;
     height: 45px;
+    vertical-align: top;
+    display: inline-block;
+    margin-top: 42px;
+    background-image: url(../images/icon.png);
+    background-size: cover;
 }

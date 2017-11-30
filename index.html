@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <title>Data Dashboard</title>
     <link rel="stylesheet" href="css/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700" rel="stylesheet">    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
-  <body>
+  <body class="fondo">
     <header>
       <img src="assets/images/logo-laboratoria.svg" alt="logo laboratoria">
       <i class="fa fa-bars" aria-hidden="true"></i>      
@@ -34,20 +34,24 @@
         <li id="students"><a href="">ALUMNAS</a> </li>
       </ul>
     </nav>
-    <section>
+    <section class="dashboard">
       <div id="container" >
 
       </div>
     </section>
-    <section class="students">
+    <section class="students" id="screenStudents" >
         <div class="specialization">
           <P>SPECIALIZATION</P>
           <label><INPUT TYPE="checkbox" NAME="js" VALUE="javascript">Javascript<BR></label>
           <label><INPUT TYPE="checkbox" NAME="ux" VALUE="javascript">UX Design<BR></label>
           <label><INPUT TYPE="checkbox" NAME="q5" VALUE="javascript">Front end Designer<BR></label>
         </div>
-
-        <input class="search" placeholder="" type="text">
+        <span>
+        <input class="search" placeholder="" type="text">   
+        </span>
+        <div id="showStudents">
+          
+         </div>
     <section>
 
     
